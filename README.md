@@ -81,8 +81,10 @@ If it works, congrats! You can double-check the rendering produces reasonable ou
 
 But this is extra. At this point, all we need to do is put the container on the cloud!
 
-### Deploying on a Cloud Container
+### Deploying your Container on a Cloud GPU
+
 **Overview**
+
 What is the cheapest way of accessing a GPU for some serious computation?
 
 *Buy one*. You'd probably be limited to gamer GPU's. As of writing, probably the best gamer GPU is the RTX 4090. This GPU has 24 GB of VRAM, making it a standard for robotics research and a starting point for playing with foundation models. A desktop with one costs around $5000 CAD - almost $4k USD. There's rarely 50% off discounts since the GPU sets a hard bottom limit on the price.
@@ -94,6 +96,7 @@ What is the cheapest way of accessing a GPU for some serious computation?
 *Use a cloud container service*. I first became aware of this option when Andrej Karpathy [trained GPT2](https://www.youtube.com/watch?v=l8pRSuU81PU) in 90 minutes by harnessing the power of eight A100 GPU's (~$160,000 of compute), paying $20 in rental fees ($0, minus sponsorship). While Karpathy used Lambda Labs, there's lots of other options: Runpod, Vast.ai to name two. Let's talk more about this interesting option.
 
 **Cloud Docker Hosts**
+
 I ended up going with Runpod since I was having payment issues with Lambda Labs. Runpod is a *Cloud Docker Host*. How it works is thousands of GPU owners across the world download Docker + Nvidia Container Toolkit on their machines. For a modest price, you can ship them any docker image you want and access their GPU through it. Note that for some reason, if you book their GPUs through their command line tools, it can be over 30% cheaper than through their website. Here are some prices at time of writing:
 
 | GPU | Price/h (USD) |
@@ -125,7 +128,8 @@ EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
 ```
 
-**Appendix: Port Forwarding**
+### Appendix: Port Forwarding
+
 If you're the fan of doing all of your development on a local docker container for ease of environment management, it can helpful to allow the docker container to directly output to your monitor, for example a GUI program such as Mujoco's viewer.
 
 This is super simple to pull off.  Just run a config command and modify the docker run arguments:
