@@ -2,14 +2,20 @@
 
 
 ### Intro
-Rendering - the visualization of the robot simulation state - is a crucial part of robotics development. Mujoco renders using OpenGL - a graphics library that is mainly used to (understandably) render visuals that users interact with. Hence, the robotics workflow of 1. Simulate thousands of times faster than reality, 2. Render some of these simulations in retrospect for debugging, save them to a file, then watch the file, can be non-trivial, especially in the common case that we want both the simulation and rendering to happen on a big GPU someone on the cloud, in a *headless* metal box without a screen (A CLI-only Linux instance).
+Rendering - the visualization of the robot simulation state - is a crucial part of robotics development. Mujoco renders using OpenGL - a graphics library that is mainly used to (understandably) render visuals for user interaction. Hence, the robotics workflow of ...
+1. Simulate thousands of times faster than reality
+2. Render some of these simulations in retrospect for debugging, save them to a file, then watch the file
+
+... can be non-trivial, especially in the common case that we want both the simulation and rendering to happen on a big GPU someone on the cloud, in a *headless* metal box without a screen (A CLI-only Linux instance).
 
 https://github.com/user-attachments/assets/05bc32b4-8bbb-4c5f-ab64-f5fbad47b207
+
+*Figure 1: Rendering a Reinforcement Learning policy to access aesthetics*
 
 Fortunately, it turns out to not be too hard to get this working!
 
 **My Biases**
-Of course, this approach might not work verbatim for everyone. It works on my setup with Ubuntu 22.04. I've gotten it working on both a 4060Ti and 4090 GPU. 
+Of course, this approach might not work verbatim for everyone. It works on my setup with Ubuntu 22.04 and a RTX 4090. I've also gotten it working on a 4060Ti. 
 
 ### Building the Docker Container
 **Prerequisites**
